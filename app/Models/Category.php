@@ -21,31 +21,25 @@ class Category extends Model
         'status' => 'boolean',
     ];
 
-    /** Alt kategoriler */
     public function children(): HasMany
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
 
-    /** Üst kategori */
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
-    /** Bu kategoriye ait ürünler */
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
     }
 
-    /** Sadece ana (üst) kategoriler */
     public function scopeParents($query)
     {
         return $query->where('parent_id', 0);
     }
-
-    /** Sadece aktif kategoriler */
     public function scopeActive($query)
     {
         return $query->where('status', true);
