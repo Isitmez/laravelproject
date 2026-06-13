@@ -8,6 +8,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * Class User
+ *
+ * @package App\Models
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string $role
+ * @property string|null $phone
+ * @property string|null $image
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|Order[] $orders
+ * @property-read \Illuminate\Database\Eloquent\Collection|Product[] $products
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
