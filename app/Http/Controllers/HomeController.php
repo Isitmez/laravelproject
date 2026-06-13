@@ -10,7 +10,12 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    /**
+     * Show the application homepage.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index(): \Illuminate\Contracts\View\View
     {
         $sliders = Slider::active()->get();
 
@@ -41,7 +46,13 @@ class HomeController extends Controller
         ));
     }
 
-    public function searchAutocomplete(Request $request)
+    /**
+     * Handle search autocomplete AJAX request.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function searchAutocomplete(Request $request): \Illuminate\Http\JsonResponse
     {
         $q = $request->query('q');
         if (strlen($q) < 2) {
@@ -72,7 +83,13 @@ class HomeController extends Controller
         return response()->json($results);
     }
 
-    public function quickView(Product $product)
+    /**
+     * Return product details for quick view modal.
+     *
+     * @param Product $product
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function quickView(Product $product): \Illuminate\Http\JsonResponse
     {
         return response()->json([
             'id' => $product->id,
@@ -88,7 +105,12 @@ class HomeController extends Controller
         ]);
     }
 
-    public function profile()
+    /**
+     * Display user profile with orders list.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function profile(): \Illuminate\Contracts\View\View
     {
         $user = auth()->user();
         $orders = Order::where('user_id', $user->id)
