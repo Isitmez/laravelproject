@@ -4,6 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Coupon
+ *
+ * @package App\Models
+ * @property int $id
+ * @property string $code
+ * @property string $type
+ * @property float $value
+ * @property bool $status
+ * @property \Illuminate\Support\Carbon|null $expires_at
+ */
 class Coupon extends Model
 {
     protected $fillable = [
@@ -19,7 +30,12 @@ class Coupon extends Model
         'expires_at' => 'datetime',
     ];
 
-    public function isValid()
+    /**
+     * Check if the coupon is valid and not expired.
+     *
+     * @return bool
+     */
+    public function isValid(): bool
     {
         if (! $this->status) {
             return false;
@@ -32,7 +48,13 @@ class Coupon extends Model
         return true;
     }
 
-    public function calculateDiscount($subtotal)
+    /**
+     * Calculate discount amount for a given subtotal.
+     *
+     * @param float $subtotal
+     * @return float
+     */
+    public function calculateDiscount(float $subtotal): float
     {
         if ($this->type === 'percent') {
             return round(($subtotal * $this->value) / 100, 2);
