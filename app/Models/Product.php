@@ -6,6 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * Class Product
+ *
+ * @package App\Models
+ * @property int $id
+ * @property int $category_id
+ * @property int|null $user_id
+ * @property string $title
+ * @property string|null $keywords
+ * @property string|null $detail
+ * @property string|null $description
+ * @property string|null $image
+ * @property float $price
+ * @property int $stock
+ * @property int $minstock
+ * @property int $discount
+ * @property bool $status
+ * @property-read Category $category
+ * @property-read User|null $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|OrderItem[] $orderItems
+ */
 class Product extends Model
 {
     protected $fillable = [
