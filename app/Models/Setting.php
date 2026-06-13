@@ -4,6 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Setting
+ *
+ * @package App\Models
+ * @property int $id
+ * @property string $key
+ * @property string|null $value
+ */
 class Setting extends Model
 {
     protected $fillable = ['key', 'value'];
